@@ -4,7 +4,7 @@ This repository contains python and Matlab code for various analyses using ocean
 
 Code contained in this repository have been used for the following publications: 
 
-* _Add ESSD MHW paper when submitted_ 
+* _Add ESSD MHW paper when submitted. Also add DOIs below_ 
 
 * _Hemming, Michael P., et al. "Observed multi-decadal trends in subsurface temperature adjacent to the East Australian Current." EGUsphere (2022): 1-25._
 
@@ -21,6 +21,15 @@ _Example citation and DOI_
 ## Contents
 
 ### Trends
+
+This folder contains code for estimating temperature trends using the Ensemble Empirical Mode Decomposition (EEMD) method, and the Theil-Sen Slope Estimator (TSSE) / Mann-Kendall (MK) test method. 
+The scripts cannot be run stand-alone, but they contain snippets of code that may be useful. 
+
+#### EEMD_trends_uncertainty_confidence.m
+
+#### get_TSSEMK_trends.py
+
+#### TrendFunctions.py
 
 ### Climatology
 
