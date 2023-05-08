@@ -51,7 +51,10 @@ Refer to 'Example_climatology.m' to see usage examples.
 
 #### Example_climatology.m
 
+This script contains code examples using the 'create_climatology.m' function above. Two climatologies are created: one using all data platforms over the whole time period, and one using satellite data only since 2009 only. The climatologies are created using data from the Port Hacking 100m site, using the NetCDF file: 'PH100_TEMP_1953-2020_aggregated_v1.nc' available here: https://thredds.aodn.org.au/thredds/catalog/UNSW/NRS_climatology/Temperature_DataProducts/PH100/Aggregated/catalog.html and which is also provided in this repository.
 
 #### load_netCDF.m
+
+This is a function that loads in all data variables and metadata from a NetCDF file. But keep in mind that this function uses 'eval', which although useful in this instance, is not generally recommended by Mathworks. 
 
 
