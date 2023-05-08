@@ -1,4 +1,4 @@
-function [climatology_struct] = create_climatology(var,var_time,var_source_index,var_depth,bm_ratio,t_centre_window,ensemble)
+function [climatology_struct] = create_climatology(var,var_time,var_source_index,var_depth,bm_ratio,t_centre_window,smoothdays,ensemble)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -28,6 +28,8 @@ function [climatology_struct] = create_climatology(var,var_time,var_source_index
 %
 % t_centre_window             | n days either side of selected day for time centered window 
 %                                        (e.g. 1 or 2 = +- 1 or 2 days).
+%
+% smoothdays                   | the number of days to smooth the statistics as a final step
 %
 % ensemble                         | yes / no = 1/0 
 %                                        Option to use the average of multiple b:m ratio data year combinations to limit the bias from outlier mooring
@@ -537,7 +539,7 @@ for year_day = 1:numel(clim_grid)
 
 end
 
-%% Loop to smooth statistics by 31 days (using stats either side of period)
+%% Loop to smooth statistics by n days (using stats either side of period)
 
 % create arrays of stats (3 x available stats to deal with ends)
 means = [climatology_struct.climatology.mean,climatology_struct.climatology.mean,climatology_struct.climatology.mean];
@@ -556,20 +558,20 @@ perc20s = [climatology_struct.climatology.perc20,climatology_struct.climatology.
 perc10s = [climatology_struct.climatology.perc10,climatology_struct.climatology.perc10,climatology_struct.climatology.perc10];
 
 % get smoothed arrays
-smoothed_mean = smooth(means,31);
-smoothed_median = smooth(medians,31);
-smoothed_std = smooth(stds,31);
-smoothed_max = smooth(maxs,31);
-smoothed_min = smooth(mins,31);
-smoothed_perc90 = smooth(perc90s,31);
-smoothed_perc80 = smooth(perc80s,31);
-smoothed_perc70 = smooth(perc70s,31);
-smoothed_perc60 = smooth(perc60s,31);
-smoothed_perc50 = smooth(perc50s,31);
-smoothed_perc40 = smooth(perc40s,31);
-smoothed_perc30 = smooth(perc30s,31);
-smoothed_perc20 = smooth(perc20s,31);
-smoothed_perc10 = smooth(perc10s,31);
+smoothed_mean = smooth(means,smoothdays);
+smoothed_median = smooth(medians,smoothdays);
+smoothed_std = smooth(stds,smoothdays);
+smoothed_max = smooth(maxs,smoothdays);
+smoothed_min = smooth(mins,smoothdays);
+smoothed_perc90 = smooth(perc90s,smoothdays);
+smoothed_perc80 = smooth(perc80s,smoothdays);
+smoothed_perc70 = smooth(perc70s,smoothdays);
+smoothed_perc60 = smooth(perc60s,smoothdays);
+smoothed_perc50 = smooth(perc50s,smoothdays);
+smoothed_perc40 = smooth(perc40s,smoothdays);
+smoothed_perc30 = smooth(perc30s,smoothdays);
+smoothed_perc20 = smooth(perc20s,smoothdays);
+smoothed_perc10 = smooth(perc10s,smoothdays);
 
 % save smoothed arrays for year days 1-365
 for year_day = 1:numel(clim_grid)
