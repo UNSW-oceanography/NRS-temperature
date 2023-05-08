@@ -14,9 +14,7 @@ This code is available under a Creative Commons 4.0 license. If you use any of t
 
 _Example citation and DOI_
 
-## Contents
-
-### Trends
+## Trends
 
 This folder contains code for estimating temperature trends using the Ensemble Empirical Mode Decomposition (EEMD) method, and the Theil-Sen Slope Estimator (TSSE) / Mann-Kendall (MK) test method. 
 The scripts cannot be run stand-alone, but they contain snippets of code that may be useful as-is or adapted. 
@@ -43,7 +41,7 @@ For example, functions that are useful for:
 * Get simulated brown noise simulations for estimating significance
 * Get downsampling time series for estimating uncertainty
 
-### Climatology
+## Climatology
 
 #### create_climatology.m
 
