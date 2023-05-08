@@ -1,10 +1,8 @@
-# Mooring Temperature Code Volume 1
+# Mooring Temperature Code
 
 This repository contains python and Matlab code for various analyses using ocean temperatures measured by moorings, ship, and satellite. 
 
 Code contained in this repository have been used for the following publications: 
-
-* _Add ESSD MHW paper when submitted. Also add DOIs below_ 
 
 * _Hemming, Michael P., et al. "Observed multi-decadal trends in subsurface temperature adjacent to the East Australian Current." EGUsphere (2022): 1-25._
 
@@ -12,7 +10,7 @@ Code contained in this repository have been used for the following publications:
 
 * _Hemming, Michael P., Moninya Roughan, and Amandine Schaeffer. "Daily subsurface ocean temperature climatology using multiple data sources: new methodology." Frontiers in Marine Science 7 (2020): 485._
 
-This code is available under a Creative Commons 4.0 license. If you use this code please cite as follows:
+This code is available under a Creative Commons 4.0 license. If you use any of this code please cite as follows:
 
 _Example citation and DOI_
 
@@ -47,6 +45,15 @@ For example, functions that are useful for:
 
 ### Climatology
 
-### MHW
+#### create_climatology.m
+
+This is the main function used to calculate the climatology statistics for a variable, which has been used for temperature and salinity so far. The user can define a bottle to mooring ratio, a time-centred window length when calculating the statistics, and the smoothing window length as a final step (as described by Hemming et al., 2020).
+
+Refer to 'Example_climatology.m' to see usage examples. 
+
+#### Example_climatology.m
+
+
+#### load_netCDF.m
 
 
