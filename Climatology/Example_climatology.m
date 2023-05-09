@@ -12,8 +12,7 @@
 %% Set working directory path
 
 % Set your own path here
-% path = 'your\path\including\the\NetCDFfile\'
-path = 'C:\Users\z3526971\OneDrive - UNSW\Work\Github\mooring-temperature\Climatology\';
+path = 'your\path\that\contains\the\NetCDFfile\'
 cd(path)
 
 %% Load the Port Hacking AMDOT aggregated data product
