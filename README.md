@@ -1,7 +1,8 @@
-# Mooring Temperature Code
-
+# Mooring Temperature Code 
+## Trends and Climatologies
+<br><br>
 This repository contains python and Matlab code for various analyses using ocean temperatures measured by moorings, ship, and satellite. 
-
+<br><br>
 Code contained in this repository have been used for the following publications: 
 
 * _Hemming, Michael P., et al. "Observed multi-decadal trends in subsurface temperature adjacent to the East Australian Current." EGUsphere (2022): 1-25._
@@ -9,15 +10,18 @@ Code contained in this repository have been used for the following publications:
 * _Roughan, M., Hemming, M., Schaeffer, A. et al. Multi-decadal ocean temperature time-series and climatologies from Australia’s long-term National Reference Stations. Sci Data 9, 157 (2022). https://doi.org/10.1038/s41597-022-01224-6_
 
 * _Hemming, Michael P., Moninya Roughan, and Amandine Schaeffer. "Daily subsurface ocean temperature climatology using multiple data sources: new methodology." Frontiers in Marine Science 7 (2020): 485._
+<br><br>
 
 This code is available under a Creative Commons 4.0 license. If you use any of this code please cite as follows:
 
 _Example citation and DOI_
 
+<br><br>
 ## Trends
 
+<br><br>
 This folder contains code for estimating temperature trends using the Ensemble Empirical Mode Decomposition (EEMD) method, and the Theil-Sen Slope Estimator (TSSE) / Mann-Kendall (MK) test method. 
-The scripts cannot be run stand-alone, but they contain snippets of code that may be useful as-is or adapted. 
+The scripts cannot be run stand-alone, instead they contain snippets of code that may be useful as-is or adapted for a user's particular needs. 
 
 #### EEMD_trends_uncertainty_confidence.m
 
@@ -41,7 +45,11 @@ For example, functions that are useful for:
 * Get simulated brown noise simulations for estimating significance
 * Get downsampling time series for estimating uncertainty
 
+<br><br>
 ## Climatology
+
+<br><br>
+This folder contains code used to calculate a climatology following the method described by Hemming et al., (2020) and Roughan et al., (2022). 
 
 #### create_climatology.m
 
