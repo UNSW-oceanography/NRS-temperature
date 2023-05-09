@@ -1,4 +1,4 @@
-# Mooring Temperature Code
+# Mooring Temperature Code (trends and climatologies)
 <br><br>
 This repository contains python and Matlab code for various analyses using ocean temperatures measured by moorings, ship, and satellite. 
 <br><br>
