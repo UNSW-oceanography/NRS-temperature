@@ -1,10 +1,8 @@
-# Mooring Temperature Code Volume 1
+# Mooring Temperature Code
 
 This repository contains python and Matlab code for various analyses using ocean temperatures measured by moorings, ship, and satellite. 
 
 Code contained in this repository have been used for the following publications: 
-
-* _Add ESSD MHW paper when submitted. Also add DOIs below_ 
 
 * _Hemming, Michael P., et al. "Observed multi-decadal trends in subsurface temperature adjacent to the East Australian Current." EGUsphere (2022): 1-25._
 
@@ -12,13 +10,11 @@ Code contained in this repository have been used for the following publications:
 
 * _Hemming, Michael P., Moninya Roughan, and Amandine Schaeffer. "Daily subsurface ocean temperature climatology using multiple data sources: new methodology." Frontiers in Marine Science 7 (2020): 485._
 
-This code is available under a Creative Commons 4.0 license. If you use this code please cite as follows:
+This code is available under a Creative Commons 4.0 license. If you use any of this code please cite as follows:
 
 _Example citation and DOI_
 
-## Contents
-
-### Trends
+## Trends
 
 This folder contains code for estimating temperature trends using the Ensemble Empirical Mode Decomposition (EEMD) method, and the Theil-Sen Slope Estimator (TSSE) / Mann-Kendall (MK) test method. 
 The scripts cannot be run stand-alone, but they contain snippets of code that may be useful as-is or adapted. 
@@ -45,8 +41,20 @@ For example, functions that are useful for:
 * Get simulated brown noise simulations for estimating significance
 * Get downsampling time series for estimating uncertainty
 
-### Climatology
+## Climatology
 
-### MHW
+#### create_climatology.m
+
+This is the main function used to calculate the climatology statistics for a variable, which has been used for temperature and salinity so far. The user can define a bottle to mooring ratio, a time-centred window length when calculating the statistics, and the smoothing window length as a final step (as described by Hemming et al., 2020).
+
+Refer to 'Example_climatology.m' to see usage examples. 
+
+#### Example_climatology.m
+
+This script contains code examples using the 'create_climatology.m' function above. Two climatologies are created: one using all data platforms over the whole time period, and one using satellite data only since 2009 only. The climatologies are created using data from the Port Hacking 100m site, using the NetCDF file: 'PH100_TEMP_1953-2020_aggregated_v1.nc' available here: https://thredds.aodn.org.au/thredds/catalog/UNSW/NRS_climatology/Temperature_DataProducts/PH100/Aggregated/catalog.html and which is also provided in this repository.
+
+#### load_netCDF.m
+
+This is a function that loads in all data variables and metadata from a NetCDF file. But keep in mind that this function uses 'eval', which although useful in this instance, is not generally recommended by Mathworks. 
 
 
