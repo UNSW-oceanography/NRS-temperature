@@ -22,6 +22,8 @@ _Example citation and DOI_
 <br><br>
 This folder contains code for estimating temperature trends using the Ensemble Empirical Mode Decomposition (EEMD) method, and the Theil-Sen Slope Estimator (TSSE) / Mann-Kendall (MK) test method. 
 The scripts cannot be run stand-alone, instead they contain snippets of code that may be useful as-is or adapted for a user's particular needs. 
+<br><br>
+Refer to 'TEMPM.yml' to see a list of the python packages that were installed when writing/using this code. If you get any errors, it might in some instances be because you are using a different version of a particular python package. 
 
 #### EEMD_trends_uncertainty_confidence.m
 
