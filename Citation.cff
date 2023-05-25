@@ -1,20 +1,18 @@
 cff-version: 1.2.0
 message: If you use this software, please cite it using these metadata.
-title: My Research Software
-abstract: This is my awesome research software. It does many things.
+title: Mooring Temperature code used for climatology and trend analyses
+abstract: This repository contains code used to create the daily temperature climatologies published as part of the Australian MultiDecadal Ocean Timeseries (AMDOT) data products (Roughan et al., 2022). This repository also contains temperature trend analysis code used to obtain results presented by Hemming et al. (2023). 
 authors:
-  - family-names: Druskat
-    given-names: Stephan
-    orcid: "https://orcid.org/1234-5678-9101-1121"
-  - name: "The Research Software project"
+  - family-names: Hemming
+    given-names: Michael Paul
+    orcid: "https://orcid.org/0000-0002-3743-4836"
+  - name: ""
 version: 0.11.2
-date-released: "2021-07-18"
+date-released: "TBC"
 identifiers:
-  - description: This is the collection of archived snapshots of all versions of My Research Software
-    type: doi
-    value: "10.5281/zenodo.123456"
-  - description: This is the archived snapshot of version 0.11.2 of My Research Software
-    type: doi
-    value: "10.5281/zenodo.123457"
+  - description: This is a collection of code used for the Australian MultiDecadal Ocean Timeseries (AMDOT) data products (Roughan et al., 2022) and trend analysis presented by Hemming  et al. (2023).
+    type: DOI
+    value: "10.5281/zenodo.123456" (to update later)
+
 license: Apache-2.0
-repository-code: "https://github.com/citation-file-format/my-research-software"
+repository-code: "https://github.com/UNSW-oceanography/mooring-temperature/"
