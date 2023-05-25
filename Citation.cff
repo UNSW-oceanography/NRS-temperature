@@ -13,6 +13,5 @@ identifiers:
   - description: This is a collection of code used for the Australian MultiDecadal Ocean Timeseries (AMDOT) data products (Roughan et al., 2022) and trend analysis presented by Hemming  et al. (2023).
     type: DOI
     value: "10.5281/zenodo.123456" (to update later)
-
 license: Apache-2.0
 repository-code: "https://github.com/UNSW-oceanography/mooring-temperature/"
