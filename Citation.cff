@@ -6,12 +6,12 @@ authors:
   - family-names: Hemming
     given-names: Michael Paul
     orcid: "https://orcid.org/0000-0002-3743-4836"
-  - name: ""
+  - name: "TBC"
 version: 0.11.2
-date-released: "TBC"
+date-released: "2023-07-01"
 identifiers:
   - description: This is a collection of code used for the Australian MultiDecadal Ocean Timeseries (AMDOT) data products (Roughan et al., 2022) and trend analysis presented by Hemming  et al. (2023).
-    type: DOI
-    value: "10.5281/zenodo.123456" (to update later)
+    type: doi
+    value: "10.5281/zenodo.123456" 
 license: Apache-2.0
 repository-code: "https://github.com/UNSW-oceanography/mooring-temperature/"
