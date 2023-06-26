@@ -34,6 +34,10 @@ Refer to 'TEMPM.yml' to see a list of python packages contained in the environme
 
 ### MATLAB
 
+#### EEMD_trend.m
+
+This is the function used to estimate the Ensemble Empirical Mode Decomposition (EEMD) temperature trends. 
+
 #### EEMD_trends_uncertainty_confidence.m
 
 Code used to estimate trends using the Ensemble Empirical Mode Decomposition (EEMD) method, as well as for getting uncertainty and confidence. Downsampling and brown noise time series created to estimate uncertainty and significance, respectively, are provided in 'TrendFunctions.py'. 
