@@ -28,13 +28,17 @@ This work is licensed under a
 
 <br><br>
 This folder contains code for estimating temperature trends using the Ensemble Empirical Mode Decomposition (EEMD) method, and the Theil-Sen Slope Estimator (TSSE) / Mann-Kendall (MK) combined method. 
-The scripts contain snippets of code that may be useful as-is or adapted for a user's particular needs.  
+The scripts do not run stand-alone. Rather they contain snippets of code that can be copied and adapted for a user's particular needs.  
 <br><br>
-Refer to 'TEMPM.yml' to see a list of the python packages that were installed for this code. If you get any errors, it's possibly because you are using a different version of a particular python package. 
+Refer to 'TEMPM.yml' to see a list of python packages contained in the environment when developing this code. If you get any errors, it's possibly because you are using a different version of a particular python package. 
+
+### MATLAB
 
 #### EEMD_trends_uncertainty_confidence.m
 
-Code for estimating trends using the Ensemble Empirical Mode Decomposition (EEMD) method, as well as for getting uncertainty and confidence. Downsampling and brown noise time series created for estimating uncertainty and significance, respectively, are provided in 'TrendFunctions.py'. 
+Code used to estimate trends using the Ensemble Empirical Mode Decomposition (EEMD) method, as well as for getting uncertainty and confidence. Downsampling and brown noise time series created to estimate uncertainty and significance, respectively, are provided in 'TrendFunctions.py'. 
+
+### Python
 
 #### get_TSSEMK_trends.py
 
@@ -44,16 +48,20 @@ Code to estimate the trend using the combined Theil-Sen Slope Estimator and Mann
 
 A python script that contains a selection of functions used in the methods described by Hemming et al., (2023).
 
-For example, functions that are useful for:
+For example, this script contains functions that are useful for:
 
 * Time conversion between MATLAB, numpy datetime64 and python datetime
 * Selecting and binning temperatures in time and depth
 * Deseasoning the tempeature data
 * Calculating simple climatologies
 * Filling gaps in the temperature time series
-* Getting simulated brown noise simulations for estimating significance
-* Getting downsampling time series for estimating uncertainty
+* Creating simulated brown noise simulations for estimating significance
+* Creating downsampling time series for estimating uncertainty
 
+This script was typically imported as a 'package' using the following code:
+```
+import TrendFunctions as TF
+```
 <br><br>
 ## Climatology
 
@@ -72,6 +80,4 @@ This script contains code examples using the 'create_climatology.m' function abo
 
 #### load_netCDF.m
 
-This is a function that loads in all data variables and metadata from a NetCDF file. But keep in mind that this function uses 'eval', which although useful in this instance, is not generally recommended by Mathworks. 
-
-
+This is a function that loads in all data variables and metadata from a NetCDF file. But the user should keep in mind that this function uses 'eval' which is not recommended by Mathworks. 
