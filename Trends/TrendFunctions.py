@@ -8,7 +8,7 @@
 ####################################################################
 # %% Description
 
-# This script contains functions that were used for the trend analysis. 
+# This script contains functions that were used for trend analysis. 
 # These functions were imported into other scripts as 'TF'
 
 # %% Import packages
@@ -258,7 +258,7 @@ def get_dataDepths(dataset,depths,binsize):
 
     Returns
     -------
-    output : class that contains binned temperature, with depth and time
+    output : a class that contains binned temperature, with depth and time
     """
     D = []; t = []; T = []
     # bin data within specified depth range
@@ -393,7 +393,29 @@ def bin_monthly(start_yr,end_yr,TIME,TEMP):
 
 # %% -----------------------------------------------------------------------------------------------
 # -----------------------------------------------------------------------------------------------
-# De-season data
+# Calculate a monthly climatology (useful for deseasoning)
+
+def calc_clim_monthly(TIME,TEMP):
+    """
+    Get the monthly climatology
+
+    Parameters
+    ----------
+    TIME : time array
+    TEMP : temperature array
+
+    """
+    yr, mn, dy, hr, yday = datevec(TIME)
+    clim = []
+    for n_mon in np.arange(1,13,1):
+        check = mn == n_mon
+        clim.append(np.nanmean(TEMP[check]))
+    
+    return clim
+
+# %% -----------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------------------
+# Deseason data
 
 def deseason(TIME,TEMP,clim):
     """
@@ -432,13 +454,6 @@ def deseason(TIME,TEMP,clim):
         for n in clim_grid:
             check = m == n
             TEMP_deseason[check] = TEMP[check] - clim[n-1]
-    
-    # plot climatology
-    # plt.scatter(yday_bin,TEMP)
-    # plt.plot(clim_grid,clim,color='r')
-    # plt.show()
-    # plot de-seasoned TEMP 
-    # plt.scatter(yday_bin,TEMP_deseason)
     
     return TEMP_deseason
 
@@ -501,7 +516,8 @@ def getDailyClim(TIME,VAR,depths,day_smooth):
     ----------
     TIME : time array
     VAR : variable array (e.g. TEMP)
-    depths : list of depths to calculate the climatology (e.g. [10,20,30,40,50])
+    depths : list of depths to calculate the climatology (e.g. [10,20,30,40,50]). Can also specify
+             'all-depths' to calculate all depths, or 'single-depth' if you input an array for a single depth.
     day_smooth : day length of smoothing window (e.g. 31 days)
     
     Returns
@@ -510,15 +526,15 @@ def getDailyClim(TIME,VAR,depths,day_smooth):
     std : Daily standard deviation climatology
     """
     if 'all depths' not in depths:
-        # make space
-        clim = np.ones((365,len(depths)),dtype=float)    
-        std = np.ones((365,len(depths)),dtype=float)    
-        for D in range(len(depths)):
+        if 'str' in str(type(depths)) and 'single-depth' in depths:
+            # make space
+            clim = np.ones((365),dtype=float)    
+            std = np.ones((365),dtype=float)  
             # get day of year 
-            _, _, _, _, doy = datevec(TIME[D])
+            _, _, _, _, doy = datevec(TIME)
             doy = np.array(doy)
             # Convert to numpy
-            T = VAR[D]
+            T = VAR
             #day grid for clim
             day_grid = list(range(1,60,1)) + list(range(61,367,1))
             # calculate climatology
@@ -533,14 +549,46 @@ def getDailyClim(TIME,VAR,depths,day_smooth):
                 if d2 > 366:
                     d2 = d2-366
                     c = (doy > d1) | (doy < d2)           
-                clim[day,D] = np.nanmean(T[c])
-                std[day,D] = np.nanstd(T[c])
-            sm_array = np.concatenate([clim[:,D],clim[:,D],clim[:,D]])
+                clim[day] = np.nanmean(T[c])
+                std[day] = np.nanstd(T[c])
+            sm_array = np.concatenate([clim[:],clim[:],clim[:]])
             sm_array = smooth(sm_array,31,window='hanning')
-            clim[:,D] = sm_array[366+15:366+365+15]
-            sm_array = np.concatenate([std[:,D],std[:,D],std[:,D]])
+            clim[:] = sm_array[366+15:366+365+15]
+            sm_array = np.concatenate([std[:],std[:],std[:]])
             sm_array = smooth(sm_array,31,window='hanning')
-            std[:,D] = sm_array[366+15:366+365+15]
+            std[:] = sm_array[366+15:366+365+15]
+        else:
+            # make space
+            clim = np.ones((365,len(depths)),dtype=float)    
+            std = np.ones((365,len(depths)),dtype=float)    
+            for D in range(len(depths)):
+                # get day of year 
+                _, _, _, _, doy = datevec(TIME[D])
+                doy = np.array(doy)
+                # Convert to numpy
+                T = VAR[D]
+                #day grid for clim
+                day_grid = list(range(1,60,1)) + list(range(61,367,1))
+                # calculate climatology
+                for day in range(len(day_grid)):
+                    d1 = day_grid[day]-6
+                    d2 = day_grid[day]+6
+                    if d1 > 0 and d2 < 366:
+                        c = (doy > d1) & (doy < d2)            
+                    if d1 < 0:
+                        d1 = d1+366
+                        c =  (doy > d1) | (doy < d2)
+                    if d2 > 366:
+                        d2 = d2-366
+                        c = (doy > d1) | (doy < d2)           
+                    clim[day,D] = np.nanmean(T[c])
+                    std[day,D] = np.nanstd(T[c])
+                sm_array = np.concatenate([clim[:,D],clim[:,D],clim[:,D]])
+                sm_array = smooth(sm_array,31,window='hanning')
+                clim[:,D] = sm_array[366+15:366+365+15]
+                sm_array = np.concatenate([std[:,D],std[:,D],std[:,D]])
+                sm_array = smooth(sm_array,31,window='hanning')
+                std[:,D] = sm_array[366+15:366+365+15]
     else:
         # make space
         clim = np.ones((365),dtype=float)   
@@ -575,7 +623,21 @@ def getDailyClim(TIME,VAR,depths,day_smooth):
 # -----------------------------------------------------------------------------------------------
 # Filling gaps with seasonal variability
 
-# This function is used by 'fillgaps()' below
+#~~~~~~~~~~~~~~~~~~~~~~
+# Comments
+#~~~~~~~~~~~~~~~~~~~~~~
+
+# There are two functions that were used for filling gaps. The first one ('Fill_gaps') actually
+# does the filling in a time series, while the second one ('fillGaps') is specifically for the dataset
+# class that was used in trend analysis. 
+
+# Function 'fill_gaps' is probably more useful (and probably the best place to start) for those 
+# wanting to fill gaps in their data sets. However, code might need to be adapted for different 
+# types of data sets. 
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 def fill_gaps(TIME,TEMP,CLIM,std_window):
     """
@@ -690,7 +752,12 @@ def fill_gaps(TIME,TEMP,CLIM,std_window):
     return filled_TEMP_DS, filled_TEMP, gap_logical, non_filled_TEMP
 
 
-# This one is the main function, that uses 'fill_gaps()' above
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# The below function is used for gapfilling data in a dataset class. It relies
+# on the 'fill_gaps()' function above
 
 def fillGaps(dataset,res):
     """
@@ -830,8 +897,13 @@ def downsampling_series(TIME,TEMP,numbSeries):
 # %% -------------------------------------------------------------------------
 # get brown noise sims close to real data
 
-# example ACF (autocorrelation) code
-# ACF_result.append(np.array(pd.Series(sm.tsa.acf(TT, nlags=10))))
+#~~~~~~~~~~~~~~~~~~~~~~
+# Comments
+#~~~~~~~~~~~~~~~~~~~~~~
+
+# The below function requires ACF_result as input.
+# example ACF (autocorrelation) code:
+# ACF_result.append(np.array(pd.Series(sm.tsa.acf(TEMP, nlags=10))))
 
 def brown_noise_sims(TIME,TEMP,ACF_result,numb_sims):
     """

@@ -7,14 +7,39 @@
 ####################################################################
 # %% Description
 
-# This script contains code used to estimate trends using the TSSE-MK method
+# This script demonstrates how to estimate a trend using the TSSE-MK method. 
+# The example data used here is from Port Hacking. 
 
 # %% -------------------------------------------------------------
 # Import Modules
 
-import TrendsFunctions as TF
+import xarray as xr
+import TrendFunctions as TF
 import pymannkendall as mk
 import numpy as np
+import matplotlib.pyplot as plt
+
+# %% -------------------------------------------------------------
+# Load data
+
+PHdata = xr.open_dataset('PHexample.nc', decode_times={'units': 'days since 1970-01-01', 'calendar': 'gregorian'})
+TIME = PHdata['TIME'].values
+TEMP = PHdata['TEMP'].values
+
+# Remove NaNs
+tt = TIME; TT = TEMP;
+c = np.isfinite(TT)
+TIME = tt[c]; TEMP = TT[c]
+
+del tt, TT, c
+
+# %% -------------------------------------------------------------
+# Get the deseasoned temperatures
+
+# get monthly climatology
+clim = TF.calc_clim_monthly(TIME,TEMP)
+# use monthly climatology to deseason temperature timeseries
+TEMP_deseasoned = TF.deseason(TIME,TEMP,clim)
 
 # %% -------------------------------------------------------------
 # TSSE Mann-Kendall Test
@@ -22,42 +47,27 @@ import numpy as np
 # source code is here:
 # https://github.com/mmhs013/pyMannKendall/blob/master/pymannkendall/pymannkendall.py
 
-print('Estimating Sen slopes and performing Mann Kendall tests')
+print('Estimating Theil-Sen slopes and performing Mann Kendall tests')
 
-mk_result = []
-mk_total_change_period = []
-mk_trend = []
-mk_trend_per_decade = []
-mk_pval = []
-TEMP = []
-TIME = []
-for n in range(0,5):
-    tt = time_data; TT = deseasoned_temp_data;
-    c = np.isfinite(TT)
-    tt = tt[c]; TT = TT[c]
-    
-    mk_result.append(
-        mk.trend_free_pre_whitening_modification_test(TT))
-    mk_pval.append(mk_result[n].p)
-    mk_trend.append(range(len(tt[np.isfinite(TT)]))
-                    *mk_result[n].slope + mk_result[n].intercept)
-    a = mk_trend[n]
-    mk_total_change_period.append((a[-1]-a[0]))
-    tr = (mk_total_change_period[n]/len(TT)) * 12 * 10;
-    mk_trend_per_decade.append(tr)
-    TEMP.append(TT)
-    TIME.append(TF.datetime2matlabdn(TF.to_datetime(tt)))
-    
-del n, tr
+# get Mann-Kendall/TSSE results
+mk_result = mk.trend_free_pre_whitening_modification_test(TEMP_deseasoned); # all results
+mk_pval = mk_result.p; # p value
+mk_trend = range(len(TIME))*mk_result.slope + mk_result.intercept; # trend line
+mk_total_change_period = (mk_trend[-1]-mk_trend[0]); # total change over trend period
+mk_trend_per_decade = mk_total_change_period/len(TEMP_deseasoned) * 12 * 10; # trend per decade
 
-class MKTSSE:
-    MK_result = mk_result
-    MK_total_change_period = mk_total_change_period
-    MK_trend = mk_trend
-    MK_trend_per_decade = mk_trend_per_decade
-    MK_pval = mk_pval
-    T = TEMP
-    t = TIME
+# %% -------------------------------------------------------------
+# Create Theil-Sen trend plot
 
-del mk_result, mk_total_change_period, mk_trend, mk_trend_per_decade, mk_pval
-del tt,TT
+plt.figure(figsize=(10, 6))
+plt.plot(TIME, TEMP, label='Temperatures')
+plt.plot(TIME, TEMP_deseasoned + np.nanmean(TEMP), label='Deseasoned temperatures')
+plt.plot(TIME, mk_trend + np.nanmean(TEMP), 'k-', linewidth=2, label='TSSE Trend')
+plt.ylabel('Temperature',fontsize=18)
+plt.title('Theil-Sen Trend',fontsize=18)
+plt.grid(True)
+plt.legend()
+plt.xticks(fontsize=18)
+plt.yticks(fontsize=18)
+plt.show()
+   

@@ -67,7 +67,7 @@ function [climatology_struct] = create_climatology(var,var_time,var_source_index
 % Display error if less than 8 inputs to function
 if ~(nargin == 8)
    error('climatology.m:  Requires eight inputs')
-end
+=======
 
 %% check that all inputs are the correct size
 
