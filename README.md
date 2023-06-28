@@ -12,7 +12,7 @@ Code contained in this repository have been used for the following publications:
 * _Hemming, Michael P., Moninya Roughan, and Amandine Schaeffer. "Daily subsurface ocean temperature climatology using multiple data sources: new methodology." Frontiers in Marine Science 7 (2020): 485. https://doi.org/10.3389/fmars.2020.00485_
 <br><br>
 
-Shield: [![CC BY 4.0][cc-by-shield]][cc-by]
+[![CC BY 4.0][cc-by-shield]][cc-by]
 =======
 If you use any of this code please cite as follows:
 
