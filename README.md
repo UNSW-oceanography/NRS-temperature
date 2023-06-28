@@ -28,7 +28,7 @@ This work is licensed under a
 
 
 <br><br>
-## Trends
+# Trends
 
 <br><br>
 This folder contains code for estimating temperature trends using the Ensemble Empirical Mode Decomposition (EEMD) method, and the Theil-Sen Slope Estimator (TSSE) / Mann-Kendall (MK) combined method. 
@@ -72,7 +72,7 @@ import TrendFunctions as TF
 ```
 <br>
 
-## Climatology
+# Climatology
 
 <br><br>
 This folder contains code used to calculate a climatology following the method described by Hemming et al., (2020) and Roughan et al., (2022). 
