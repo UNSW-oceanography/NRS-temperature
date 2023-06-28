@@ -29,8 +29,8 @@ This work is licensed under a
 <br><br>
 This folder contains code for estimating temperature trends using the Ensemble Empirical Mode Decomposition (EEMD) method, and the Theil-Sen Slope Estimator (TSSE) / Mann-Kendall (MK) combined method. 
 The scripts do not run stand-alone. Rather they contain snippets of code that can be copied and adapted for a user's particular needs.  
-<br><br>
-Refer to 'TEMPM.yml' to see a list of python packages contained in the environment when developing this code. If you get any errors, it's possibly because you are using a different version of a particular python package. 
+<br>
+Refer to 'TEMPM.yml' to see a list of python packages contained in the environment when developing the python code. If you get any errors, it's possibly because you are using a different version of a particular python package. 
 
 ### MATLAB
 
@@ -54,7 +54,7 @@ A python script that contains a selection of functions used in the methods descr
 
 For example, this script contains functions that are useful for:
 
-* Time conversion between MATLAB, numpy datetime64 and python datetime
+* Time conversion between MATLAB datenum, numpy datetime64 and python datetime
 * Selecting and binning temperatures in time and depth
 * Deseasoning the tempeature data
 * Calculating simple climatologies
@@ -62,11 +62,12 @@ For example, this script contains functions that are useful for:
 * Creating simulated brown noise simulations for estimating significance
 * Creating downsampling time series for estimating uncertainty
 
-This script was typically imported as a 'package' using the following code:
+This script was typically imported into other scripts like a 'package' using the following code:
 ```
 import TrendFunctions as TF
 ```
-<br><br>
+<br>
+
 ## Climatology
 
 <br><br>
@@ -74,7 +75,7 @@ This folder contains code used to calculate a climatology following the method d
 
 #### create_climatology.m
 
-This is the main function used to calculate the climatology statistics for a variable, which has been used for temperature. The user can define a bottle to mooring ratio, a time-centred window length when calculating the statistics, and the smoothing window length as a final step (as described by Hemming et al., 2020).
+This is the main function used to calculate the climatology statistics for temperature. The user can define a bottle to mooring ratio, a time-centred window length when calculating the statistics, and the smoothing window length as a final step (as described by Hemming et al., 2020).
 
 Refer to 'Example_climatology.m' to see usage examples. 
 
@@ -84,4 +85,4 @@ This script contains code examples using the 'create_climatology.m' function abo
 
 #### load_netCDF.m
 
-This is a function that loads in all data variables and metadata from a NetCDF file. But the user should keep in mind that this function uses 'eval' which is not recommended by Mathworks. 
+This function loads in all data variables and metadata from a NetCDF file. But the user should keep in mind that this function uses 'eval' which is not recommended by Mathworks. 
