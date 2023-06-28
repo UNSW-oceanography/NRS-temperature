@@ -1,7 +1,7 @@
 # National Reference Station Analysis
 ## Trends and Climatologies
 <br><br>
-This repository contains python and Matlab code for analyses using ocean temperatures measured by moorings, ship, and satellite. 
+This repository contains python and Matlab code for analyses using ocean temperatures measured at the National Reference Stations (NRS) via moorings, ship (bottle and CTD), and satellite. 
 <br><br>
 Code contained in this repository have been used for the following publications: 
 
