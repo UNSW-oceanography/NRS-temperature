@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: If you use this software, please cite it using these metadata.
+title: Mooring Temperature code used for climatology and trend analyses
+abstract: This repository contains code used to create the daily temperature climatologies published as part of the Australian MultiDecadal Ocean Timeseries (AMDOT) data products (Roughan et al., 2022). This repository also contains temperature trend analysis code used to obtain results presented by Hemming et al. (2023). 
+authors:
+  - family-names: Hemming
+    given-names: Michael Paul
+    orcid: "https://orcid.org/0000-0002-3743-4836"
+version: 0.11.2
+date-released: "2023-07-01"
+identifiers:
+  - description: This is a collection of code used for the Australian MultiDecadal Ocean Timeseries (AMDOT) data products (Roughan et al., 2022) and trend analysis presented by Hemming  et al. (2023).
+    type: doi
+    value: "" 
+license: CC BY 4.0
+repository-code: "https://github.com/UNSW-oceanography/mooring-temperature/"
