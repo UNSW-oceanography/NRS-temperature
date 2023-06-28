@@ -30,24 +30,26 @@ data.TIME = double(data.TIME);
 check =  data.DEPTH_AGG <= 4; 
 
 % climatology with a bottle to mooring ratio of 6:1 and using a moving
-% time-window of +- 5 days (10 days)
+% time-window of +- 5 days
 data.clim = create_climatology(data.TEMP_AGG(check), ...
                                         data.TIME(check), ...
                                         data.TEMP_DATA_PLATFORM_AGG(check), ...
                                         data.DEPTH_AGG(check), ...
-                                        [6 1], 5, 0);
+                                        [6 1], 5, 31, 0);
 
-%% Calculate a climatology using Mooring and satellite data only
+%% Calculate a climatology using mooring and satellite data only
 
+% '1 = bottle samples, 2 = ship CTD profiles, 3 = mooring measurements, 4 = satellite measurements'
+% Select mooring and satellite data only
 check =  data.DEPTH_AGG <= 4 & data.TEMP_DATA_PLATFORM_AGG >=3;
 
 % climatology with no bottle to mooring ratio and using a moving
-% time-window of +- 5 days (10 days)
+% time-window of +- 5 days
 data.clim_SatMoor = create_climatology(data.TEMP_AGG(check), ...
                                         data.TIME(check), ...
                                         data.TEMP_DATA_PLATFORM_AGG(check), ...
                                         data.DEPTH_AGG(check), ...
-                                        [1 1], 5, 0);
+                                        [1 1], 5, 31, 0);
 
 %% Create a plot comparing the two climatologies
 
@@ -58,7 +60,7 @@ p2 = plot([data.clim_SatMoor.climatology.smooth_mean],'LineWidth',1.5);
 set(gca,'LineWidth',1.5,'Box','On','FontSize',18); grid on;
 datetick
 leg = legend('All Platforms, 6:1 ratio','Satellite & Mooring','Box','Off')
-title('Mean climatology 0-4m')
+title('Mean climatology 0 - 4m')
 ylabel('Temperature [^\circC]')
 
 % uncomment if you wish to save the figure
