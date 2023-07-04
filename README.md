@@ -14,7 +14,10 @@ Code contained in this repository have been used for the following publications:
 
 [![CC BY 4.0][cc-by-shield]][cc-by]
 =======
-If you use this code please cite as specified on Zenodo. 
+If you use this code please cite as written below: 
+
+Michael Hemming. (2023). UNSW-oceanography/NRS-temperature: v1.0.0.0 (v1.0.0.0). Zenodo. [![DOI](https://zenodo.org/badge/638034418.svg)](https://zenodo.org/badge/latestdoi/638034418)
+
 
 This work is licensed under a
 [Creative Commons Attribution 4.0 International License][cc-by].
