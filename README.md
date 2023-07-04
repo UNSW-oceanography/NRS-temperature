@@ -14,8 +14,7 @@ Code contained in this repository have been used for the following publications:
 
 [![CC BY 4.0][cc-by-shield]][cc-by]
 =======
-If you use any of this code please cite as follows:
-
+If you use this code please cite as specified on Zenodo. 
 
 This work is licensed under a
 [Creative Commons Attribution 4.0 International License][cc-by].
@@ -60,7 +59,7 @@ For example, this script contains functions that are useful for:
 
 * Time conversion between MATLAB datenum, numpy datetime64 and python datetime
 * Selecting and binning temperatures in time and depth
-* Deseasoning the tempeature data
+* Deseasoning the temperature data
 * Calculating simple climatologies
 * Filling gaps in the temperature time series
 * Creating simulated brown noise simulations for estimating significance
