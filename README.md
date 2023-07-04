@@ -31,7 +31,7 @@ This work is licensed under a
 
 <br><br>
 This folder contains code for estimating temperature trends using the Ensemble Empirical Mode Decomposition (EEMD) method, and the Theil-Sen Slope Estimator (TSSE) / Mann-Kendall (MK) combined method. 
-The scripts do not run stand-alone. Rather they contain snippets of code that can be copied and adapted for a user's particular needs.  
+
 <br>
 Refer to 'TEMPM.yml' to see a list of python packages contained in the environment when developing the python code. If you get any errors, it's possibly because you are using a different version of a particular python package. 
 
@@ -39,17 +39,17 @@ Refer to 'TEMPM.yml' to see a list of python packages contained in the environme
 
 #### EEMD_trend.m
 
-This is the function used to estimate the Ensemble Empirical Mode Decomposition (EEMD) temperature trends. 
+This function was used to estimate the Ensemble Empirical Mode Decomposition (EEMD) temperature trends. 
 
 #### EEMD_trends_uncertainty_confidence.m
 
-Code used to estimate trends using the Ensemble Empirical Mode Decomposition (EEMD) method, as well as for getting uncertainty and confidence. Downsampling and brown noise time series created to estimate uncertainty and significance, respectively, are provided in 'TrendFunctions.py'. 
+This code was used to estimate trends using the Ensemble Empirical Mode Decomposition (EEMD) method, as well as for getting uncertainty and confidence. Downsampling and brown noise time series created to estimate uncertainty and significance, respectively, are provided in 'TrendFunctions.py'. 
 
 ### Python
 
 #### get_TSSEMK_trends.py
 
-Code to estimate the trend using the combined Theil-Sen Slope Estimator and Mann-Kendall test (TSSE) method. 
+This code was used to estimate the trend using the combined Theil-Sen Slope Estimator and Mann-Kendall test (TSSE) method. 
 
 #### TrendFunctions.py
 
@@ -74,7 +74,7 @@ import TrendFunctions as TF
 # Climatology
 
 <br><br>
-This folder contains code used to calculate a climatology following the method described by Hemming et al., (2020) and Roughan et al., (2022). 
+This folder contains code used to calculate a climatology following the method described by Hemming et al., (2020) and used by Roughan et al., (2022). 
 
 #### create_climatology.m
 
