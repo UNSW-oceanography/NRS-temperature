@@ -5,7 +5,7 @@ This repository contains python and Matlab code for analyses using ocean tempera
 <br><br>
 Code contained in this repository have been used for the following publications: 
 
-* _Hemming, Michael P., et al. "Observed multi-decadal trends in subsurface temperature adjacent to the East Australian Current." EGUsphere (2022): 1-25. https://doi.org/10.5194/egusphere-2022-1336_
+* _Hemming, Michael P., et al. "Observed multi-decadal trends in subsurface temperature adjacent to the East Australian Current." EGUsphere (2023): 1-25. https://doi.org/10.5194/egusphere-2022-1336_
 
 * _Roughan, M., Hemming, M., Schaeffer, A. et al. Multi-decadal ocean temperature time-series and climatologies from Australia’s long-term National Reference Stations. Sci Data 9, 157 (2022). https://doi.org/10.1038/s41597-022-01224-6_
 
